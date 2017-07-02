@@ -41,6 +41,14 @@ enum sgx_commands {
 	EMODT	= 0xF,
 };
 
+struct sgx_launch_request {
+	u8 mrenclave[32];
+	u8 mrsigner[32];
+	uint64_t attributes;
+	uint64_t xfrm;
+	struct sgx_einittoken token;
+};
+
 #ifdef CONFIG_X86_64
 #define XAX "%%rax"
 #else
