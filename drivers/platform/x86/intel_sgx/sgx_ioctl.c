@@ -182,6 +182,11 @@ static long sgx_ioc_enclave_init(struct file *filep, unsigned int cmd,
 	if (ret)
 		goto out;
 
+	ret = copy_from_user(einittoken, (void __user *)initp->einittoken,
+			     sizeof(*einittoken));
+	if (ret)
+		goto out;
+
 	ret = sgx_encl_get(initp->addr, &encl);
 	if (ret)
 		goto out;

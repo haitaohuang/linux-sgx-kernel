@@ -123,16 +123,17 @@ struct sgx_enclave_add_page {
 	__u16	mrmask;
 } __attribute__((__packed__));
 
-
 /**
  * struct sgx_enclave_init - parameter structure for the
  *                           %SGX_IOC_ENCLAVE_INIT ioctl
  * @addr:	address within the ELRANGE
  * @sigstruct:	address for the SIGSTRUCT data
+ * @einittoken:	address for the EINITTOKEN data
  */
 struct sgx_enclave_init {
 	__u64	addr;
 	__u64	sigstruct;
-};
+	__u64	einittoken;
+} __attribute__((__packed__));
 
 #endif /* _UAPI_ASM_X86_SGX_H */
