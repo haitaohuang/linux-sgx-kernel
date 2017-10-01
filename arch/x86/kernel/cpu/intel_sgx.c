@@ -35,9 +35,6 @@ static __init bool sgx_is_enabled(void)
 	if (!boot_cpu_has(X86_FEATURE_SGX))
 		return false;
 
-	if (!boot_cpu_has(X86_FEATURE_SGX_LC))
-		return false;
-
 	rdmsrl(MSR_IA32_FEATURE_CONTROL, fc);
 	if (!(fc & FEATURE_CONTROL_LOCKED))
 		return false;

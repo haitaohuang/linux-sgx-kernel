@@ -112,8 +112,8 @@ static unsigned long sgx_get_unmapped_area(struct file *file,
 
 const struct file_operations sgx_fops = {
 	.owner			= THIS_MODULE,
-	.open			= sgx_open,
-	.release		= sgx_release,
+//	.open			= sgx_open,
+//	.release		= sgx_release,
 	.unlocked_ioctl		= sgx_ioctl,
 #ifdef CONFIG_COMPAT
 	.compat_ioctl		= sgx_compat_ioctl,
@@ -173,7 +173,7 @@ static struct sgx_context *sgx_ctx_alloc(struct device *parent)
 	ctx->dev.devt = MKDEV(MAJOR(sgx_devt), 0);
 	ctx->dev.release = sgx_dev_release;
 
-	dev_set_name(&ctx->dev, "sgx");
+	dev_set_name(&ctx->dev, "isgx");
 
 	cdev_init(&ctx->cdev, &sgx_fops);
 	ctx->cdev.owner = THIS_MODULE;
@@ -245,9 +245,9 @@ static int sgx_dev_init(struct device *parent)
 	int ret;
 	int i;
 
-	ret = sgx_init_msrs();
-	if (ret)
-		return ret;
+//	ret = sgx_init_msrs();
+//	if (ret)
+//		return ret;
 
 	sgx_dev = sgxm_ctx_alloc(parent);
 
